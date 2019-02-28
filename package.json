@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-ui-app",
-  "version": "1.0.0",
+  "name": "skillMgrUi",
+  "version": "0.0.1",
   "description": "My perfect Nuxt.js project",
   "author": "Takeshi Miyajima",
   "private": true,
