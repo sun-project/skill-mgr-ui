@@ -54,8 +54,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    '~/modules/eureka'
+    '@nuxtjs/pwa'
   ],
   /*
    ** Axios module configuration
@@ -63,6 +62,7 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+
   /*
    ** Eureka module configuration
    */

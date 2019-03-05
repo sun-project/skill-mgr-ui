@@ -1,11 +1,15 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const Eureka = require('eureka-js-client').Eureka
 const app = express()
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
+
+// Create Eureka client
+const eureka = new Eureka(config.eureka)
 
 async function start() {
   // Init Nuxt.js
@@ -39,14 +43,18 @@ async function start() {
     badge: true
   })
 
+  // Start eureka client
+  eureka.start()
+
   // destroyメソッドで接続すべて切るようにする
   wireUpServer(server)
 
   // 停止用コールバック
-  const shutdown = async () => {
-    await nuxt.close()
-    server.destroy(() => {
-      process.exit()
+  const shutdown = () => {
+    eureka.stop(() => {
+      server.destroy(() => {
+        process.exit()
+      })
     })
   }
 
