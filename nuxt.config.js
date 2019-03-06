@@ -104,7 +104,8 @@ module.exports = {
       host: process.env.EUREKA_HOST || 'localhost',
       port: process.env.EUREKA_PORT || 8761,
       servicePath: process.env.EUREKA_PATH || '/eureka/apps/',
-      maxRetries: 20
+      maxRetries: 20,
+      requestRetryDelay: 5000
     }
   },
   /*
