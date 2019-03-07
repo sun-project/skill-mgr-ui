@@ -28,6 +28,13 @@ async function start() {
     await nuxt.ready()
   }
 
+  // Repond health data
+  app.get(config.health.path, (req, res) => {
+    res.send({
+      status: 'OK'
+    })
+  })
+
   // Repond info data
   app.get(config.info.path, (req, res) => {
     res.send(config.info.data)

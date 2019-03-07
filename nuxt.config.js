@@ -89,12 +89,14 @@ module.exports = {
       app: 'skillMgrUi',
       hostName: hostName,
       ipAddr: localAddress,
-      statusPageUrl: `http://${localAddress}:3000/api/info`,
+      instanceId: `${hostName}:skillMgrUi:3000`,
+      statusPageUrl: `http://${hostName}:3000/api/info`,
+      healthCheckUrl: `http://${hostName}:3000/api/health`,
       port: {
         $: 3000,
         '@enabled': 'true'
       },
-      vipAddress: `${hostName}:3000`,
+      vipAddress: 'skillMgrUi',
       dataCenterInfo: {
         '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
         name: 'MyOwn'
@@ -116,6 +118,19 @@ module.exports = {
     data: {
       app: 'skillMgrUi'
     }
+  },
+  /*
+   ** Health response
+   */
+  health: {
+    path: '/api/health'
+  },
+
+  /*
+   ** Router configuration
+   */
+  router: {
+    base: '/ui/'
   },
 
   /*
