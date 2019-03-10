@@ -18,6 +18,8 @@ function getLocalAddress() {
 
 const localAddress = getLocalAddress()
 
+const contextPath = process.env.CONTEXT_PATH || '/ui'
+
 module.exports = {
   mode: 'universal',
 
@@ -90,8 +92,8 @@ module.exports = {
       hostName: hostName,
       ipAddr: localAddress,
       instanceId: `${hostName}:skillMgrUi:3000`,
-      statusPageUrl: `http://${hostName}:3000/api/info`,
-      healthCheckUrl: `http://${hostName}:3000/api/health`,
+      statusPageUrl: `http://${hostName}:3000${contextPath}/api/info`,
+      healthCheckUrl: `http://${hostName}:3000${contextPath}/api/health`,
       port: {
         $: 3000,
         '@enabled': 'true'
@@ -114,7 +116,7 @@ module.exports = {
    ** Info response
    */
   info: {
-    path: '/api/info',
+    path: `${contextPath}/api/info`,
     data: {
       app: 'skillMgrUi'
     }
@@ -123,14 +125,14 @@ module.exports = {
    ** Health response
    */
   health: {
-    path: '/api/health'
+    path: `${contextPath}/api/health`
   },
 
   /*
    ** Router configuration
    */
   router: {
-    base: '/ui/'
+    base: `${contextPath}/`
   },
 
   /*
