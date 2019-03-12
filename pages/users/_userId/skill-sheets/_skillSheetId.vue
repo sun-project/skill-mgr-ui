@@ -4,263 +4,25 @@
       スキルシート <small>最新</small>
     </h1>
     <a-card>
-      <div class="profile">
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            氏名
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="9"
-          >
-            {{ profile.full_name }}
-          </a-col>
-          <a-col
-            class="table-cell is-header"
-            :md="2"
-          >
-            性別
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="2"
-          >
-            {{ profile.sex_name }}
-          </a-col>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            生年月
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="3"
-          >
-            {{ profile.birthday }}
-            <!-- TODO: format -->
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="2"
-          >
-            {{ profile.age }}歳
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            住所
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="21"
-          >
-            {{ profile.address }}
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            最寄り駅
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="21"
-          >
-            {{ profile.nearest_station }}
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            最終学歴
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="9"
-          >
-            {{ profile.final_education }}
-          </a-col>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            学部・学科
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="9"
-          >
-            {{ profile.department }}
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            卒業年月
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="21"
-          >
-            {{ profile.graduation }}
-            <!-- TODO: format -->
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            class="table-cell is-header"
-            :md="3"
-          >
-            免許・資格
-          </a-col>
-          <a-col
-            class="table-cell"
-            :md="21"
-          >
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in profile.license_list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </a-col>
-        </a-row>
-      </div>
-      <a-table
-        :data-source="skillRecords"
-        bordered
-      >
-        <a-table-column
-          title="作業期間"
-          data-index="work_range"
-        >
-          <template slot-scope="range">
-            <!-- TODO: format -->
-            <span>{{ range.from }}</span>
-            <span>〜</span>
-            <span>{{ range.to }}</span>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="システム概要"
-          data-index="system_name"
-        />
-        <a-table-column
-          title="工程"
-          data-index="step_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="作業形態"
-          data-index="position_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="体制/規模"
-          data-index="scale_name"
-        />
-        <a-table-column
-          title="動作環境"
-          data-index="environment_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="DB/ミドルウェア"
-          data-index="middleware_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="言語"
-          data-index="language_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-        <a-table-column
-          title="ツール/フレームワーク"
-          data-index="other_list"
-        >
-          <template slot-scope="list">
-            <ul class="list-inline">
-              <li
-                v-for="(text, i) in list"
-                :key="i"
-              >
-                {{ text }}
-              </li>
-            </ul>
-          </template>
-        </a-table-column>
-      </a-table>
+      <table-profile
+        class="profile"
+        v-bind="profile"
+      />
+      <table-skills :skills="skills" />
     </a-card>
   </div>
 </template>
 
 <script>
+import TableProfile from '@/components/TableProfile.vue'
+import TableSkills from '@/components/TableSkills.vue'
+
 export default {
+  components: {
+    TableProfile,
+    TableSkills
+  },
+
   data() {
     return {
       response: {
@@ -281,6 +43,7 @@ export default {
               final_education: '筑波大学',
               department: '第三学群情報学類',
               graduation: '2005-03',
+              graduation_type: '中退',
               license_list: ['普通自動車第一種免許']
             },
             skill_list: [
@@ -324,20 +87,38 @@ export default {
 
   computed: {
     profile() {
-      return this.response.response.skill_sheet.profile
+      const profile = this.response.response.skill_sheet.profile
+      return {
+        fullName: profile.full_name,
+        sex: profile.sex_name,
+        birthday: profile.birthday,
+        age: profile.age,
+        address: profile.address,
+        nearestStation: profile.nearest_station,
+        finalEducation: profile.final_education,
+        department: profile.department,
+        graduation: profile.graduation,
+        graduationType: profile.graduation_type,
+        licenses: profile.license_list
+      }
     },
 
-    skillRecords() {
-      return this.response.response.skill_sheet.skill_list.map(
-        (skill, index) => ({
-          key: index,
-          work_range: {
-            from: skill.work_from,
-            to: skill.work_to
-          },
-          ...skill
-        })
-      )
+    skills() {
+      const skills = this.response.response.skill_sheet.skill_list
+      return skills.map(skill => ({
+        workRange: {
+          from: skill.work_from,
+          to: skill.work_to
+        },
+        systemName: skill.system_name,
+        steps: skill.step_list,
+        positions: skill.position_list,
+        scale: skill.scale_name,
+        environments: skill.environment_list,
+        middlewares: skill.middleware_list,
+        languages: skill.language_list,
+        others: skill.other_list
+      }))
     }
   }
 }
@@ -355,27 +136,5 @@ export default {
 }
 .profile {
   margin-bottom: 24px;
-}
-
-.table-cell {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.table-cell.is-header {
-}
-
-.list-inline {
-  margin: 0;
-  padding: 0;
-}
-
-.list-inline li {
-  display: inline-block;
-  margin-right: 0.25rem;
-}
-
-.is-nowrap {
-  white-space: nowrap;
 }
 </style>
