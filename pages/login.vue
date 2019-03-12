@@ -9,10 +9,13 @@
         @submit.prevent="login"
       >
         <a-form-item label="ユーザーID">
-          <a-input />
+          <a-input v-model="userId" />
         </a-form-item>
         <a-form-item label="パスワード">
-          <a-input type="password" />
+          <a-input
+            v-model="password"
+            type="password"
+          />
         </a-form-item>
         <a-button
           type="primary"
@@ -27,9 +30,16 @@
 
 <script>
 export default {
+  data() {
+    return {
+      userId: '',
+      password: ''
+    }
+  },
+
   methods: {
     login() {
-      this.$router.push('/users/test/skill-sheets/latest')
+      this.$router.push(`/users/${this.userId}/skill-sheets/latest`)
     }
   }
 }

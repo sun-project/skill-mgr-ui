@@ -23,68 +23,6 @@ export default {
     TableSkills
   },
 
-  data() {
-    return {
-      response: {
-        response: {
-          skill_sheet: {
-            id: '1',
-            create_timestamp: '2015-01-01T00:00:00.000+09:00',
-            create_user: 'tmiyajima',
-            last_update_timestamp: '2015-01-02T00:00:00.000+09:00',
-            last_update_user: 'tnemoto',
-            profile: {
-              full_name: 'M.T',
-              sex_name: '男',
-              birthday: '1983-10',
-              age: 29,
-              address: '東京都',
-              nearest_station: '総武線 新小岩駅',
-              final_education: '筑波大学',
-              department: '第三学群情報学類',
-              graduation: '2005-03',
-              graduation_type: '中退',
-              license_list: ['普通自動車第一種免許']
-            },
-            skill_list: [
-              {
-                work_from: '2005-01',
-                work_to: '2006-06',
-                system_name: 'ホームページ管理担当',
-                step_list: ['製造', '単体テスト'],
-                position_list: ['PG'],
-                scale_name: '数名',
-                environment_list: ['Linux'],
-                middleware_list: ['*******'],
-                language_list: ['HTML', 'JavaScript'],
-                other_list: ['********']
-              },
-              {
-                work_from: '2006-07',
-                work_to: '2007-10',
-                system_name: '賃貸斡旋支援システム',
-                step_list: [
-                  '基本設計',
-                  '詳細設計',
-                  '製造',
-                  '単体テスト',
-                  '結合テスト',
-                  '総合テスト'
-                ],
-                position_list: ['SE', 'PG'],
-                scale_name: '数名',
-                environment_list: ['Windows2003'],
-                middleware_list: ['Oracle10g', 'ColdFusion'],
-                language_list: ['CFML', 'HTML', 'JavaScript', 'C++'],
-                other_list: ['VisualStudio', 'Eclipse', 'Subversion']
-              }
-            ]
-          }
-        }
-      }
-    }
-  },
-
   computed: {
     profile() {
       const profile = this.response.response.skill_sheet.profile
@@ -120,6 +58,38 @@ export default {
         others: skill.other_list
       }))
     }
+  },
+
+  async asyncData({ params, $axios }) {
+    let skillSheetId
+    if (params.skillSheetId === 'latest') {
+      const { response } = await $axios.$get(
+        `http://118.27.0.151/skillmgr/api/v1/skillsheets/list`,
+        {
+          params: {
+            user_id: params.userId
+          }
+        }
+      )
+
+      console.log('list', response) // eslint-disable-line
+
+      if (response.skill_sheet_list.length === 0) {
+        return {}
+      }
+
+      skillSheetId = response.skill_sheet_list[0].id
+    } else {
+      skillSheetId = params.skillSheetId
+    }
+
+    const response = await $axios.$get(
+      `http://118.27.0.151/skillmgr/api/v1/skillsheets/${skillSheetId}/detail`
+    )
+
+    console.log('detail', response) // eslint-disable-line
+
+    return { response }
   }
 }
 </script>
