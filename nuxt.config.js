@@ -18,7 +18,7 @@ function getLocalAddress() {
 
 const localAddress = getLocalAddress()
 
-const contextPath = process.env.CONTEXT_PATH || '/ui'
+const contextPath = process.env.CONTEXT_PATH || '/skillmgr/ui'
 
 module.exports = {
   mode: 'universal',
