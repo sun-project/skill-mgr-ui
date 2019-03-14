@@ -24,7 +24,7 @@
         <a-dropdown>
           <a-menu slot="overlay">
             <a-menu-item>
-              <a-icon type="plus" />新バージョンを作成
+              <a-icon type="plus" />新版を作成
             </a-menu-item>
             <a-menu-item>
               <a-icon type="clock-circle" />履歴を表示
@@ -35,7 +35,7 @@
             ghost
           >
             <a-icon type="clock-circle" />
-            バージョンの管理
+            版の管理
             <a-icon type="down" />
           </a-button>
         </a-dropdown>
