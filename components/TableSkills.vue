@@ -1,16 +1,16 @@
 <template>
   <a-table
-    :data-source="dataSource"
     bordered
+    :scroll="{ x: true }"
+    :data-source="dataSource"
   >
     <a-table-column
       title="作業期間"
       data-index="workRange"
     >
       <template slot-scope="range">
-        <span>{{ range.from | formatYearMonth }}</span>
-        <span>〜</span>
-        <span>{{ range.to | formatYearMonth }}</span>
+        <span class="nowrap">{{ range.from | formatYearMonth }}</span><br>
+        <span class="nowrap">〜{{ range.to | formatYearMonth }}</span>
       </template>
     </a-table-column>
     <a-table-column
@@ -46,7 +46,7 @@
       </template>
     </a-table-column>
     <a-table-column
-      title="DB/ミドルウェア"
+      title="DB/MW"
       data-index="middlewares"
     >
       <template slot-scope="list">
@@ -62,7 +62,7 @@
       </template>
     </a-table-column>
     <a-table-column
-      title="ツール/フレームワーク"
+      title="ツール/FW"
       data-index="others"
     >
       <template slot-scope="list">
@@ -104,3 +104,24 @@ export default {
   }
 }
 </script>
+
+<style>
+.ant-table th {
+  white-space: nowrap;
+}
+.ant-table td:nth-child(1) {
+  min-width: 8em;
+}
+.ant-table td:nth-child(2) {
+  min-width: 10em;
+}
+.ant-table td:nth-child(5) {
+  min-width: 8em;
+}
+</style>
+
+<style scoped>
+.nowrap {
+  white-space: nowrap;
+}
+</style>

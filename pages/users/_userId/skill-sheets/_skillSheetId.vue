@@ -17,23 +17,28 @@
             type="primary"
             ghost
           >
-            <a-icon type="printer" />
+            <a-icon type="eye" />
             プレビュー
           </a-button>
-          <a-dropdown>
-            <a-menu slot="overlay">
-              <a-menu-item>新しい版を作成する</a-menu-item>
-              <a-menu-item>履歴を表示する</a-menu-item>
-            </a-menu>
-            <a-button
-              type="primary"
-              ghost
-            >
-              版の管理
-              <a-icon type="down" />
-            </a-button>
-          </a-dropdown>
         </a-button-group>
+        <a-dropdown>
+          <a-menu slot="overlay">
+            <a-menu-item>
+              <a-icon type="plus" />新バージョンを作成
+            </a-menu-item>
+            <a-menu-item>
+              <a-icon type="clock-circle" />履歴を表示
+            </a-menu-item>
+          </a-menu>
+          <a-button
+            type="primary"
+            ghost
+          >
+            <a-icon type="clock-circle" />
+            バージョンの管理
+            <a-icon type="down" />
+          </a-button>
+        </a-dropdown>
       </div>
       <table-profile
         class="profile"
@@ -128,7 +133,7 @@ export default {
 
 <style scoped>
 .container {
-  width: 80rem;
+  width: 60rem;
   max-width: 100%;
   margin: 3rem auto;
 }
