@@ -4,6 +4,37 @@
       スキルシート <small>最新</small>
     </h1>
     <a-card>
+      <div style="margin-bottom: 1.5rem; text-align: center;">
+        <a-button-group>
+          <a-button
+            type="primary"
+            ghost
+          >
+            <a-icon type="edit" />
+            編集
+          </a-button>
+          <a-button
+            type="primary"
+            ghost
+          >
+            <a-icon type="printer" />
+            プレビュー
+          </a-button>
+          <a-dropdown>
+            <a-menu slot="overlay">
+              <a-menu-item>新しい版を作成する</a-menu-item>
+              <a-menu-item>履歴を表示する</a-menu-item>
+            </a-menu>
+            <a-button
+              type="primary"
+              ghost
+            >
+              版の管理
+              <a-icon type="down" />
+            </a-button>
+          </a-dropdown>
+        </a-button-group>
+      </div>
       <table-profile
         class="profile"
         v-bind="profile"
