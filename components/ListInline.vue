@@ -53,5 +53,10 @@ export default {
 .list-inline li {
   display: inline-block;
   margin-right: 0.25rem;
+  white-space: nowrap;
+}
+.list-inline li:not(:last-child)::after {
+  content: ',';
+  margin-left: -4px;
 }
 </style>
