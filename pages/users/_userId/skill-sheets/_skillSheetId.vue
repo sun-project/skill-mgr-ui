@@ -100,7 +100,7 @@ export default {
     let skillSheetId
     if (params.skillSheetId === 'latest') {
       const { response } = await $axios.$get(
-        `http://118.27.0.151/skillmgr/api/v1/skillsheets/list`,
+        `/skillmgr/api/v1/skillsheets/list`,
         {
           params: {
             user_id: params.userId
@@ -120,7 +120,7 @@ export default {
     }
 
     const response = await $axios.$get(
-      `http://118.27.0.151/skillmgr/api/v1/skillsheets/${skillSheetId}/detail`
+      `/skillmgr/api/v1/skillsheets/${skillSheetId}/detail`
     )
 
     console.log('detail', response) // eslint-disable-line

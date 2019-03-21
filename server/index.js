@@ -1,15 +1,22 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
-const Eureka = require('eureka-js-client').Eureka
 const app = express()
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
+console.debug(JSON.stringify(config, null, 2)) // eslint-disable-line
 
-// Create Eureka client
-const eureka = new Eureka(config.eureka)
+const handlers = Object.assign(
+  {
+    onStart: server => {},
+    onShutdown: (server, callback) => {
+      callback()
+    }
+  },
+  config.express
+)
 
 async function start() {
   // Init Nuxt.js
@@ -50,19 +57,25 @@ async function start() {
     badge: true
   })
 
-  // Start eureka client
-  eureka.start()
+  // onStart handler
+  handlers.onStart && handlers.onStart(server)
 
   // destroyメソッドで接続すべて切るようにする
   wireUpServer(server)
 
   // 停止用コールバック
   const shutdown = () => {
-    eureka.stop(() => {
+    if (handlers.onShutdown) {
+      handlers.onShutdown(server, () => {
+        server.destroy(() => {
+          process.exit()
+        })
+      })
+    } else {
       server.destroy(() => {
         process.exit()
       })
-    })
+    }
   }
 
   // シグナルハンドラ指定

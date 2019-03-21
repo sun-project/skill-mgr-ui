@@ -1,24 +1,6 @@
-const os = require('os')
 const pkg = require('./package')
-
-const hostName = os.hostname()
-
-function getLocalAddress() {
-  const interfaces = os.networkInterfaces()
-  for (const dev in interfaces) {
-    const details = interfaces[dev]
-    for (let i = 0; i < details.length; i++) {
-      const detail = details[i]
-      if (!detail.internal && detail.family === 'IPv4') {
-        return detail.address
-      }
-    }
-  }
-}
-
-const localAddress = getLocalAddress()
-
-const contextPath = process.env.CONTEXT_PATH || '/skillmgr/ui'
+const config = require('./config')
+const { contextPath } = require('./config/env')
 
 module.exports = {
   mode: 'universal',
@@ -84,35 +66,6 @@ module.exports = {
   },
 
   /*
-   ** Eureka module configuration
-   */
-  eureka: {
-    instance: {
-      app: 'skillMgrUi',
-      hostName: hostName,
-      ipAddr: localAddress,
-      instanceId: `${hostName}:skillMgrUi:3000`,
-      statusPageUrl: `http://${hostName}:3000${contextPath}/api/info`,
-      healthCheckUrl: `http://${hostName}:3000${contextPath}/api/health`,
-      port: {
-        $: 3000,
-        '@enabled': 'true'
-      },
-      vipAddress: 'skillMgrUi',
-      dataCenterInfo: {
-        '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
-        name: 'MyOwn'
-      }
-    },
-    eureka: {
-      host: process.env.EUREKA_HOST || 'localhost',
-      port: process.env.EUREKA_PORT || 8761,
-      servicePath: process.env.EUREKA_PATH || '/eureka/apps/',
-      maxRetries: 20,
-      requestRetryDelay: 5000
-    }
-  },
-  /*
    ** Info response
    */
   info: {
@@ -153,5 +106,10 @@ module.exports = {
         })
       }
     }
-  }
+  },
+
+  /*
+   * Override config
+   */
+  ...config
 }
