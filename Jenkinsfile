@@ -10,8 +10,25 @@ pipeline {
     stage('Building image') {
       steps {
         script {
-          docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
+    }
+    stage('Deploy image') {
+      steps {
+        script {
+          docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+  }
+  post {
+    always {
+      steps {
+        sh "docker rmi $registry:$BUILD_NUMBER"
+        deleteDir()
       }
     }
   }
