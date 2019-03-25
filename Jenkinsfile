@@ -28,7 +28,7 @@ pipeline {
   }
   post {
     always {
-      sh "docker rmi $image"
+      sh "docker rmi $image:$BUILD_NUMBER $image:latest"
       deleteDir()
     }
   }
