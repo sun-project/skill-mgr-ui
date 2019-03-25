@@ -1,4 +1,4 @@
-# nuxt-ui-app
+# skill-mgr-ui
 
 > My perfect Nuxt.js project
 
