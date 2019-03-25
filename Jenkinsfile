@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    image = 'registry.kirin.mydns.jp/sun-project/skill-mgr-ui'
+    image = 'sun-project/skill-mgr-ui'
     registry = 'https://registry.kirin.mydns.jp'
     registryCredential = 'registry.kirin.mydns.jp'
   }
@@ -11,7 +11,7 @@ pipeline {
     stage('Building image') {
       steps {
         script {
-          dockerImage = docker.build "$image:$BUILD_NUMBER"
+          dockerImage = docker.build env.image
         }
       }
     }
@@ -19,7 +19,8 @@ pipeline {
       steps {
         script {
           docker.withRegistry(registry, registryCredential) {
-            dockerImage.push()
+            dockerImage.push(env.BUILD_NUMBER)
+            dockerImage.push("latest")
           }
         }
       }
@@ -27,7 +28,7 @@ pipeline {
   }
   post {
     always {
-      sh "docker rmi $image:$BUILD_NUMBER"
+      sh "docker rmi $image"
       deleteDir()
     }
   }
