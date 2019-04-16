@@ -38,6 +38,8 @@ import BaseElement from '@/components/BaseElement.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
 
 export default {
+  auth: false,
+
   components: {
     BaseContainer,
     BaseElement,

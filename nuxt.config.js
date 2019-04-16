@@ -90,7 +90,8 @@ module.exports = {
    ** Router configuration
    */
   router: {
-    base: `${contextPath}/`
+    base: `${contextPath}/`,
+    middleware: ['auth']
   },
 
   /*
