@@ -27,6 +27,13 @@
             ログイン
           </a-button>
         </a-form>
+        <hr>
+        <a-button
+          type="primary"
+          @click="loginWithKeycloak"
+        >
+          Keycloakでログイン
+        </a-button>
       </a-card>
     </base-element>
   </base-container>
@@ -56,6 +63,9 @@ export default {
   methods: {
     login() {
       this.$router.push(`/users/${this.userId}/skill-sheets/latest`)
+    },
+    loginWithKeycloak() {
+      this.$auth.loginWith('keycloak')
     }
   }
 }

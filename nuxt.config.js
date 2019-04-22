@@ -68,7 +68,31 @@ module.exports = {
   /*
    ** Auth module configuration
    */
-  auth: {},
+  auth: {
+    redirect: {
+      login: `${contextPath}/login`,
+      logout: `${contextPath}/`,
+      callback: `${contextPath}/login-callback`,
+      home: `${contextPath}/`
+    },
+    strategies: {
+      local: false,
+      keycloak: {
+        _scheme: 'oauth2',
+        authorization_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/auth',
+        access_token_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/token',
+        userinfo_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/userinfo',
+        response_type: 'code',
+        grant_type: 'authorization_code',
+        scope: ['openid', 'profile', 'email'],
+        client_id: 'skill-mgr-ui',
+        token_key: 'access_token'
+      }
+    }
+  },
 
   /*
    ** Info response
