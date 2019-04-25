@@ -5,7 +5,7 @@ module.exports = {
 
   proxy: {
     '/skillmgr/api/': {
-      target: 'http://sunapp.mydns.jp'
+      target: 'http://localhost:8080'
     }
   }
 }
