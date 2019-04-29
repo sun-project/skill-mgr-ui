@@ -85,7 +85,7 @@ export default {
     },
 
     editLink() {
-      return this.skillSheet ? `${this.skillSheet.id}/edit` : null
+      return this.skillSheet && `${this.skillSheet.id}/edit`
     }
   },
 

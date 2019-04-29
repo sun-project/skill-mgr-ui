@@ -37,6 +37,20 @@ export class SkillSheetRepository {
 
     return mapSkillSheet(skillSheet)
   }
+
+  async updateSkillSheet(skillSheet) {
+    const { response } = await this.$axios.$post(
+      `/skillmgr/api/v1/skillsheets/${skillSheet.id}/update`,
+      {
+        skill_sheet: {
+          profile: mapProfileFieldsBack(skillSheet.profile),
+          skill_list: skillSheet.skills.map(mapSkillFieldsBack)
+        }
+      }
+    )
+
+    await console.debug(`SkillSheetRepository#updateSkillSheet(${JSON.stringify(skillSheet)})`, response) // eslint-disable-line
+  }
 }
 
 const mapSkillSheet = skillSheet => ({
@@ -63,6 +77,20 @@ const mapProfileFields = profile => ({
   licenses: profile.license_list
 })
 
+const mapProfileFieldsBack = profile => ({
+  full_name: profile.fullName,
+  sex_name: profile.sex,
+  birthday: profile.birthday,
+  age: profile.age,
+  address: profile.address,
+  nearest_station: profile.nearestStation,
+  final_education: profile.finalEducation,
+  department: profile.department,
+  graduation: profile.graduation,
+  graduation_type: profile.graduationType,
+  license_list: profile.licenses
+})
+
 const mapSkillFields = skill => ({
   workRange: {
     from: skill.work_from,
@@ -76,4 +104,32 @@ const mapSkillFields = skill => ({
   middlewares: skill.middleware_list,
   languages: skill.language_list,
   others: skill.other_list
+})
+
+const mapSkillFieldsBack = skill => ({
+  work_from: skill.workRange.from,
+  work_to: skill.workRange.to,
+  system_name: skill.systemName,
+  step_list: skill.steps,
+  position_list: skill.positions,
+  scale_name: skill.scale,
+  environment_list: skill.environments,
+  middleware_list: skill.middlewares,
+  language_list: skill.languages,
+  other_list: skill.others
+})
+
+export const createNewSkill = () => ({
+  workRange: {
+    from: '',
+    to: ''
+  },
+  systemName: '',
+  steps: [],
+  positions: [],
+  scale: '',
+  environments: [],
+  middlewares: [],
+  languages: [],
+  others: []
 })
