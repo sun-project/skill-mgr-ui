@@ -13,8 +13,10 @@
               type="primary"
               ghost
             >
-              <a-icon type="edit" />
-              編集
+              <nuxt-link :to="editLink">
+                <a-icon type="edit" />
+                編集
+              </nuxt-link>
             </a-button>
             <a-button
               type="primary"
@@ -54,6 +56,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import BaseContainer from '@/components/BaseContainer.vue'
 import BaseElement from '@/components/BaseElement.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
@@ -70,72 +74,25 @@ export default {
   },
 
   computed: {
+    ...mapGetters('skillSheetDetail', ['skillSheet']),
+
     profile() {
-      const profile = this.response.response.skill_sheet.profile
-      return {
-        fullName: profile.full_name,
-        sex: profile.sex_name,
-        birthday: profile.birthday,
-        age: profile.age,
-        address: profile.address,
-        nearestStation: profile.nearest_station,
-        finalEducation: profile.final_education,
-        department: profile.department,
-        graduation: profile.graduation,
-        graduationType: profile.graduation_type,
-        licenses: profile.license_list
-      }
+      return this.skillSheet && this.skillSheet.profile
     },
 
     skills() {
-      const skills = this.response.response.skill_sheet.skill_list
-      return skills.map(skill => ({
-        workRange: {
-          from: skill.work_from,
-          to: skill.work_to
-        },
-        systemName: skill.system_name,
-        steps: skill.step_list,
-        positions: skill.position_list,
-        scale: skill.scale_name,
-        environments: skill.environment_list,
-        middlewares: skill.middleware_list,
-        languages: skill.language_list,
-        others: skill.other_list
-      }))
+      return this.skillSheet ? this.skillSheet.skills : []
+    },
+
+    editLink() {
+      return this.skillSheet ? `${this.skillSheet.id}/edit` : null
     }
   },
 
-  async asyncData({ params, $axios }) {
-    let skillSheetId
-    if (params.skillSheetId === 'latest') {
-      const { response } = await $axios.$get(
-        `/skillmgr/api/v1/skillsheets/list`,
-        {
-          params: {
-            user_id: params.userId
-          }
-        }
-      )
-
-      console.log('list', response) // eslint-disable-line
-
-      if (response.skill_sheet_list.length === 0) {
-        return {}
-      }
-
-      skillSheetId = response.skill_sheet_list[0].id
-    } else {
-      skillSheetId = params.skillSheetId
-    }
-
-    const response = await $axios.$get(
-      `/skillmgr/api/v1/skillsheets/${skillSheetId}/detail`
-    )
-
-    console.log('detail', response) // eslint-disable-line
-
-    return { response }
+  async fetch({ store, params }) {
+    await store.dispatch('skillSheetDetail/load', {
+      skillSheetId: params.skillSheetId
+    })
   }
 }
 </script>
