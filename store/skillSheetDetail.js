@@ -15,12 +15,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async load({ commit }, { skillSheetId }) {
+  async load({ commit }, { userId, skillSheetId }) {
     const skillSheetRepository = new SkillSheetRepository(this.$axios)
 
     const loadingSkillSheetId =
       skillSheetId === 'latest'
-        ? await skillSheetRepository.fetchLatestSkillSheetId()
+        ? await skillSheetRepository.fetchLatestSkillSheetId(userId)
         : skillSheetId
 
     const skillSheet = await skillSheetRepository.fetchSkillSheet(

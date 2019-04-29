@@ -90,9 +90,7 @@ export default {
   },
 
   async fetch({ store, params }) {
-    await store.dispatch('skillSheetDetail/load', {
-      skillSheetId: params.skillSheetId
-    })
+    await store.dispatch('skillSheetDetail/load', params)
   }
 }
 </script>
