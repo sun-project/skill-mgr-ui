@@ -1,39 +1,31 @@
 <template>
-  <base-container>
-    <base-element>
-      <base-heading align="center">
-        スキルシートの編集 <small>最新</small>
-      </base-heading>
-    </base-element>
-    <base-element>
-      <a-card>
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        スキルシートの編集
+      </h1>
+      <h2 class="subtitle has-text-centered">
+        最新
+      </h2>
+      <div class="box">
         <form @submit.prevent="save">
-          <a-button
-            type="primary"
-            html-type="submit"
+          <b-button
+            type="is-primary"
+            native-type="submit"
           >
             保存
-          </a-button>
+          </b-button>
           <pre>{{ JSON.stringify(skillSheet, null, 2) }}</pre>
         </form>
-      </a-card>
-    </base-element>
-  </base-container>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import BaseContainer from '@/components/BaseContainer.vue'
-import BaseElement from '@/components/BaseElement.vue'
-import BaseHeading from '@/components/BaseHeading.vue'
 
 export default {
-  components: {
-    BaseContainer,
-    BaseElement,
-    BaseHeading
-  },
-
   computed: {
     ...mapGetters('skillSheetEdit', ['skillSheet'])
   },

@@ -1,74 +1,90 @@
 <template>
-  <base-container>
-    <base-element>
-      <base-heading align="center">
-        スキルシート <small>最新</small>
-      </base-heading>
-    </base-element>
-    <base-element>
-      <a-card>
-        <div style="margin-bottom: 1.5rem; text-align: center;">
-          <a-button-group>
-            <a-button
-              type="primary"
-              ghost
-            >
-              <nuxt-link :to="editLink">
-                <a-icon type="edit" />
-                編集
-              </nuxt-link>
-            </a-button>
-            <a-button
-              type="primary"
-              ghost
-            >
-              <a-icon type="eye" />
-              プレビュー
-            </a-button>
-          </a-button-group>
-          <a-dropdown>
-            <a-menu slot="overlay">
-              <a-menu-item>
-                <a-icon type="plus" />新版を作成
-              </a-menu-item>
-              <a-menu-item>
-                <a-icon type="clock-circle" />履歴を表示
-              </a-menu-item>
-            </a-menu>
-            <a-button
-              type="primary"
-              ghost
-            >
-              <a-icon type="clock-circle" />
-              版の管理
-              <a-icon type="down" />
-            </a-button>
-          </a-dropdown>
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        スキルシート
+      </h1>
+      <h2 class="subtitle has-text-centered">
+        最新
+      </h2>
+      <div class="box">
+        <div style="margin-bottom: 1.5rem;">
+          <div class="field is-grouped is-grouped-centered">
+            <div class="field has-addons">
+              <div class="control">
+                <nuxt-link
+                  :to="editLink"
+                  class="button is-primary is-outlined"
+                >
+                  <b-icon
+                    icon="pencil"
+                    size="is-small"
+                  />
+                  <span>編集</span>
+                </nuxt-link>
+              </div>
+              <div class="control">
+                <button class="button is-primary is-outlined">
+                  <b-icon
+                    icon="eye"
+                    size="is-small"
+                  />
+                  <span>プレビュー</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <b-dropdown>
+                  <button
+                    slot="trigger"
+                    class="button is-primary is-outlined"
+                  >
+                    <b-icon
+                      icon="clock-outline"
+                      size="is-small"
+                    />
+                    <span>版の管理</span>
+                    <b-icon icon="menu-down" />
+                  </button>
+                  <b-dropdown-item>
+                    <b-icon
+                      icon="plus"
+                      size="is-small"
+                    />
+                    <span>新板を作成</span>
+                  </b-dropdown-item>
+                  <b-dropdown-item>
+                    <b-icon
+                      icon="history"
+                      size="is-small"
+                    />
+                    <span>履歴を表示</span>
+                  </b-dropdown-item>
+                </b-dropdown>
+              </div>
+            </div>
+          </div>
         </div>
         <table-profile
           class="profile"
           v-bind="profile"
         />
         <table-skills :skills="skills" />
-      </a-card>
-    </base-element>
-  </base-container>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
-import BaseContainer from '@/components/BaseContainer.vue'
-import BaseElement from '@/components/BaseElement.vue'
-import BaseHeading from '@/components/BaseHeading.vue'
 import TableProfile from '@/components/TableProfile.vue'
 import TableSkills from '@/components/TableSkills.vue'
 
 export default {
   components: {
-    BaseContainer,
-    BaseElement,
-    BaseHeading,
     TableProfile,
     TableSkills
   },
