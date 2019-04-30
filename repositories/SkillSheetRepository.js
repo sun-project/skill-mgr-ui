@@ -39,7 +39,7 @@ export class SkillSheetRepository {
   }
 
   async updateSkillSheet(skillSheet) {
-    const { response } = await this.$axios.$post(
+    const { response } = await this.$axios.$put(
       `/skillmgr/api/v1/skillsheets/${skillSheet.id}/update`,
       {
         skill_sheet: {

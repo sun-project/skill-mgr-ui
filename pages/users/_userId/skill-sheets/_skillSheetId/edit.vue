@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import BaseContainer from '@/components/BaseContainer.vue'
 import BaseElement from '@/components/BaseElement.vue'
 import BaseHeading from '@/components/BaseHeading.vue'
@@ -35,11 +35,7 @@ export default {
   },
 
   computed: {
-    skillSheet: {
-      get() {
-        return this.$store.getters['skillSheetEdit/skillSheet']
-      }
-    }
+    ...mapGetters('skillSheetEdit', ['skillSheet'])
   },
 
   async fetch({ store, params }) {
