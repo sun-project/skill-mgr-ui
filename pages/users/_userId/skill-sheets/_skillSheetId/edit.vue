@@ -52,7 +52,6 @@
               />
             </template>
           </div>
-          <pre>{{ JSON.stringify(skillSheet, null, 2) }}</pre>
         </div>
       </div>
     </div>
