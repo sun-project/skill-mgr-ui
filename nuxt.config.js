@@ -56,6 +56,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     'nuxt-buefy'
   ],
@@ -64,6 +65,34 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+  /*
+   ** Auth module configuration
+   */
+  auth: {
+    redirect: {
+      login: `/login`,
+      logout: `/`,
+      callback: `${contextPath}/login-callback`,
+      home: `${contextPath}/`
+    },
+    strategies: {
+      local: false,
+      keycloak: {
+        _scheme: 'oauth2',
+        authorization_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/auth',
+        access_token_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/token',
+        userinfo_endpoint:
+          'https://keycloak.giraffe.mydns.jp/auth/realms/dev.app.sunarch.co.jp/protocol/openid-connect/userinfo',
+        response_type: 'code',
+        grant_type: 'authorization_code',
+        scope: ['openid', 'profile', 'email'],
+        client_id: 'skill-mgr-ui',
+        token_key: 'access_token'
+      }
+    }
   },
   /*
    ** Buefy module configuration
@@ -92,7 +121,8 @@ module.exports = {
    ** Router configuration
    */
   router: {
-    base: `${contextPath}/`
+    base: `${contextPath}/`,
+    middleware: ['auth']
   },
 
   /*

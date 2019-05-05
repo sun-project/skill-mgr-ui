@@ -5,27 +5,13 @@
         ログイン
       </h1>
       <div class="box">
-        <form @submit.prevent="login">
-          <b-field label="ユーザーID">
-            <b-input v-model="userId" />
-          </b-field>
-          <b-field label="パスワード">
-            <b-input
-              v-model="password"
-              type="password"
-            />
-          </b-field>
-          <b-field>
-            <p class="control">
-              <b-button
-                type="is-primary"
-                native-type="submit"
-              >
-                ログイン
-              </b-button>
-            </p>
-          </b-field>
-        </form>
+        <b-button
+          type="is-primary"
+          class="is-fullwidth"
+          @click="loginWithKeycloak"
+        >
+          Keycloakでログイン
+        </b-button>
       </div>
     </div>
   </section>
@@ -33,16 +19,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      userId: '',
-      password: ''
-    }
-  },
+  auth: false,
 
   methods: {
-    login() {
-      this.$router.push(`/users/${this.userId}/skill-sheets/latest`)
+    loginWithKeycloak() {
+      this.$auth.loginWith('keycloak')
     }
   }
 }

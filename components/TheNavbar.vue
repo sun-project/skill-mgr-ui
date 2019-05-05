@@ -29,7 +29,7 @@
       class="navbar-menu"
     >
       <div
-        v-if="$route.params.userId"
+        v-if="user"
         class="navbar-end"
       >
         <b-dropdown
@@ -43,24 +43,33 @@
             role="button"
           >
             <b-icon icon="account" />
-            {{ $route.params.userId }}
+            {{ user.name }}
             <b-icon icon="menu-down" />
           </a>
           <b-dropdown-item
             value="logout"
-            has-link
             aria-role="menuitem"
+            @click="$emit('logout')"
           >
-            <nuxt-link to="/">
-              <b-icon
-                icon="logout"
-                size="is-small"
-              />
-              ログアウト
-            </nuxt-link>
+            <b-icon
+              icon="logout"
+              size="is-small"
+            />
+            ログアウト
           </b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  }
+}
+</script>

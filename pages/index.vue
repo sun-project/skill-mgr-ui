@@ -1,8 +1,7 @@
 <script>
 export default {
-  fetch({ redirect }) {
-    // 無条件でログインに飛ばす
-    return redirect('/login')
+  fetch({ app, redirect }) {
+    redirect(`/users/${app.$auth.user.preferred_username}/skill-sheets`)
   }
 }
 </script>
