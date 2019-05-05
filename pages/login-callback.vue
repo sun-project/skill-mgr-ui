@@ -2,23 +2,18 @@
   <section class="section">
     <div class="container">
       <h1 class="title has-text-centered">
-        Callback
+        Logging in...
       </h1>
-      <div class="box">
-        <p>Message: {{ message }}</p>
-      </div>
     </div>
+    <b-loading
+      is-full-page
+      active
+    />
   </section>
 </template>
 
 <script>
 export default {
-  auth: false,
-
-  computed: {
-    message() {
-      return '...'
-    }
-  }
+  auth: false
 }
 </script>
