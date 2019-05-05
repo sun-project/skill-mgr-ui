@@ -43,12 +43,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['ant-design-vue/dist/antd.css'],
+  css: ['@/assets/styles/buefy.scss'],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/antd-ui'],
+  plugins: [],
 
   /*
    ** Nuxt.js modules
@@ -57,7 +57,8 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-buefy'
   ],
   /*
    ** Axios module configuration
@@ -92,6 +93,12 @@ module.exports = {
         token_key: 'access_token'
       }
     }
+  },
+  /*
+   ** Buefy module configuration
+   */
+  buefy: {
+    css: false
   },
 
   /*

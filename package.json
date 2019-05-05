@@ -18,11 +18,11 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/proxy": "^1.3.3",
     "@nuxtjs/pwa": "^2.6.0",
-    "ant-design-vue": "^1.1.10",
     "cross-env": "^5.2.0",
     "eureka-js-client": "^4.4.2",
     "express": "^4.16.4",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "nuxt-buefy": "^0.3.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -41,10 +41,12 @@
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12.0",
     "nodemon": "^1.18.9",
     "prettier": "1.14.3",
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^0.1.1",
-    "require-extension-hooks-vue": "^2.0.0"
+    "require-extension-hooks-vue": "^2.0.0",
+    "sass-loader": "^7.1.0"
   }
 }

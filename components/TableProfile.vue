@@ -1,135 +1,76 @@
 <template>
-  <div>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        氏名
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="9"
-      >
-        {{ fullName }}
-      </a-col>
-      <a-col
-        class="table-cell is-header"
-        :md="2"
-      >
-        性別
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="2"
-      >
-        {{ sex }}
-      </a-col>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        生年月
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="3"
-      >
-        {{ birthday | formatYearMonth }}
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="2"
-      >
-        {{ age | formatAge }}
-      </a-col>
-    </a-row>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        住所
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="21"
-      >
-        {{ address }}
-      </a-col>
-    </a-row>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        最寄り駅
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="21"
-      >
-        {{ nearestStation }}
-      </a-col>
-    </a-row>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        最終学歴
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="9"
-      >
-        {{ finalEducation }}
-      </a-col>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        学部・学科
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="9"
-      >
-        {{ department }}
-      </a-col>
-    </a-row>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        卒業年月
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="21"
-      >
-        {{ graduation | formatYearMonth }}
-        <template v-if="graduationType">
-          ({{ graduationType }})
-        </template>
-      </a-col>
-    </a-row>
-    <a-row>
-      <a-col
-        class="table-cell is-header"
-        :md="3"
-      >
-        免許・資格
-      </a-col>
-      <a-col
-        class="table-cell"
-        :md="21"
-      >
-        <list-inline :items="licenses" />
-      </a-col>
-    </a-row>
-  </div>
+  <table class="table is-bordered is-fullwidth">
+    <tbody>
+      <tr>
+        <th>
+          氏名
+        </th>
+        <td>
+          {{ fullName }}
+        </td>
+        <th>
+          性別
+        </th>
+        <td>
+          {{ sex }}
+        </td>
+        <th>
+          生年月
+        </th>
+        <td>
+          {{ birthday | formatYearMonth }}
+        </td>
+        <td>
+          {{ age | formatAge }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          住所
+        </th>
+        <td>
+          {{ address }}
+        </td>
+        <th>
+          最寄り駅
+        </th>
+        <td colspan="4">
+          {{ nearestStation }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          最終学歴
+        </th>
+        <td>
+          {{ finalEducation }}
+        </td>
+        <th>
+          学部・学科
+        </th>
+        <td colspan="4">
+          {{ department }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          卒業年月
+        </th>
+        <td>
+          {{ graduation | formatYearMonth }}
+          <template v-if="graduationType">
+            ({{ graduationType }})
+          </template>
+        </td>
+        <th>
+          免許・資格
+        </th>
+        <td colspan="4">
+          <list-inline :items="licenses" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>

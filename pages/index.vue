@@ -1,12 +1,10 @@
 <template>
-  <base-container size="sm">
-    <base-element>
-      <base-heading align="center">
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
         auth-moduleおためし
-      </base-heading>
-    </base-element>
-    <base-element>
-      <a-card>
+      </h1>
+      <div class="box">
         <p>User status: {{ $auth.loggedIn ? 'Logged In' : 'Guest' }}</p>
         <pre>{{ JSON.stringify($auth.user, null, 2) }}</pre>
         <template v-if="$auth.loggedIn">
@@ -22,23 +20,13 @@
             ログイン
           </nuxt-link>
         </template>
-      </a-card>
-    </base-element>
-  </base-container>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import BaseContainer from '@/components/BaseContainer.vue'
-import BaseElement from '@/components/BaseElement.vue'
-import BaseHeading from '@/components/BaseHeading.vue'
-
 export default {
-  auth: false,
-
-  components: {
-    BaseContainer,
-    BaseElement,
-    BaseHeading
-  }
+  auth: false
 }
 </script>

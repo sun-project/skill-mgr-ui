@@ -1,75 +1,67 @@
 <template>
-  <a-table
+  <b-table
+    :data="skills"
     bordered
-    :scroll="{ x: true }"
-    :data-source="dataSource"
+    paginated
   >
-    <a-table-column
-      title="作業期間"
-      data-index="workRange"
-    >
-      <template slot-scope="range">
-        <span class="nowrap">{{ range.from | formatYearMonth }}</span><br>
-        <span class="nowrap">〜{{ range.to | formatYearMonth }}</span>
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="システム概要"
-      data-index="systemName"
-    />
-    <a-table-column
-      title="工程"
-      data-index="steps"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="作業形態"
-      data-index="positions"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="体制/規模"
-      data-index="scale"
-    />
-    <a-table-column
-      title="動作環境"
-      data-index="environments"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="DB/MW"
-      data-index="middlewares"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="言語"
-      data-index="languages"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-    <a-table-column
-      title="ツール/FW"
-      data-index="others"
-    >
-      <template slot-scope="list">
-        <list-inline :items="list" />
-      </template>
-    </a-table-column>
-  </a-table>
+    <template slot-scope="props">
+      <b-table-column
+        label="作業期間"
+        field="workRange"
+      >
+        <span class="nowrap">{{ props.row.workRange.from | formatYearMonth }}</span><br>
+        <span class="nowrap">〜{{ props.row.workRange.to | formatYearMonth }}</span>
+      </b-table-column>
+      <b-table-column
+        label="システム概要"
+        field="systemName"
+      >
+        {{ props.row.systemName }}
+      </b-table-column>
+      <b-table-column
+        label="工程"
+        field="steps"
+      >
+        <list-inline :items="props.row.steps" />
+      </b-table-column>
+      <b-table-column
+        label="作業形態"
+        field="positions"
+      >
+        <list-inline :items="props.row.positions" />
+      </b-table-column>
+      <b-table-column
+        label="体制/規模"
+        field="scale"
+      >
+        {{ props.row.scale }}
+      </b-table-column>
+      <b-table-column
+        label="動作環境"
+        field="environments"
+      >
+        <list-inline :items="props.row.environments" />
+      </b-table-column>
+      <b-table-column
+        label="DB/MW"
+        field="middlewares"
+      >
+        <list-inline :items="props.row.middlewares" />
+      </b-table-column>
+      <b-table-column
+        label="言語"
+        field="languages"
+      >
+        <list-inline :items="props.row.languages" />
+      </b-table-column>
+      <b-table-column
+        label="ツール/FW"
+        field="others"
+      >
+        <list-inline :items="props.row.others" />
+      </b-table-column>
+    </template>
+  </b-table>
 </template>
 
 <script>
@@ -92,33 +84,9 @@ export default {
         return []
       }
     }
-  },
-
-  computed: {
-    dataSource() {
-      return this.skills.map((skill, i) => ({
-        key: i,
-        ...skill
-      }))
-    }
   }
 }
 </script>
-
-<style>
-.ant-table th {
-  white-space: nowrap;
-}
-.ant-table td:nth-child(1) {
-  min-width: 8em;
-}
-.ant-table td:nth-child(2) {
-  min-width: 10em;
-}
-.ant-table td:nth-child(5) {
-  min-width: 8em;
-}
-</style>
 
 <style scoped>
 .nowrap {

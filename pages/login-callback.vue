@@ -1,31 +1,19 @@
 <template>
-  <base-container size="sm">
-    <base-element>
-      <base-heading align="center">
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
         Callback
-      </base-heading>
-    </base-element>
-    <base-element>
-      <a-card>
+      </h1>
+      <div class="box">
         <p>Message: {{ message }}</p>
-      </a-card>
-    </base-element>
-  </base-container>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import BaseContainer from '@/components/BaseContainer.vue'
-import BaseElement from '@/components/BaseElement.vue'
-import BaseHeading from '@/components/BaseHeading.vue'
-
 export default {
   auth: false,
-
-  components: {
-    BaseContainer,
-    BaseElement,
-    BaseHeading
-  },
 
   computed: {
     message() {

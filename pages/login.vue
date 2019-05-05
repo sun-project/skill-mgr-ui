@@ -1,57 +1,46 @@
 <template>
-  <base-container size="sm">
-    <base-element>
-      <base-heading align="center">
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered">
         ログイン
-      </base-heading>
-    </base-element>
-    <base-element>
-      <a-card>
-        <a-form
-          layout="vertical"
-          @submit.prevent="login"
-        >
-          <a-form-item label="ユーザーID">
-            <a-input v-model="userId" />
-          </a-form-item>
-          <a-form-item label="パスワード">
-            <a-input
+      </h1>
+      <div class="box">
+        <form @submit.prevent="login">
+          <b-field label="ユーザーID">
+            <b-input v-model="userId" />
+          </b-field>
+          <b-field label="パスワード">
+            <b-input
               v-model="password"
               type="password"
             />
-          </a-form-item>
-          <a-button
-            type="primary"
-            html-type="submit"
-          >
-            ログイン
-          </a-button>
-        </a-form>
+          </b-field>
+          <b-field>
+            <p class="control">
+              <b-button
+                type="is-primary"
+                native-type="submit"
+              >
+                ログイン
+              </b-button>
+            </p>
+          </b-field>
+        </form>
         <hr>
-        <a-button
-          type="primary"
+        <b-button
+          type="is-primary"
           @click="loginWithKeycloak"
         >
           Keycloakでログイン
-        </a-button>
-      </a-card>
-    </base-element>
-  </base-container>
+        </b-button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-import BaseContainer from '@/components/BaseContainer.vue'
-import BaseElement from '@/components/BaseElement.vue'
-import BaseHeading from '@/components/BaseHeading.vue'
-
 export default {
   auth: false,
-
-  components: {
-    BaseContainer,
-    BaseElement,
-    BaseHeading
-  },
 
   data() {
     return {
@@ -70,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  max-width: 30rem;
+}
+</style>
