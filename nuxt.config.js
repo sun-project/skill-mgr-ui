@@ -72,7 +72,7 @@ module.exports = {
   auth: {
     redirect: {
       login: `${contextPath}/login`,
-      logout: `${contextPath}/`,
+      logout: `/`,
       callback: `${contextPath}/login-callback`,
       home: `${contextPath}/`
     },

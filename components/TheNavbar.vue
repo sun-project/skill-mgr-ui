@@ -48,16 +48,14 @@
           </a>
           <b-dropdown-item
             value="logout"
-            has-link
             aria-role="menuitem"
+            @click="$auth.logout()"
           >
-            <nuxt-link to="/">
-              <b-icon
-                icon="logout"
-                size="is-small"
-              />
-              ログアウト
-            </nuxt-link>
+            <b-icon
+              icon="logout"
+              size="is-small"
+            />
+            ログアウト
           </b-dropdown-item>
         </b-dropdown>
       </div>
