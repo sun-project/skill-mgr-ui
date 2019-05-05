@@ -16,12 +16,12 @@ export const mutations = {
     state.skillSheet = skillSheet
   },
 
-  inputProfile(state, profile) {
+  changeProfile(state, profile) {
     state.skillSheet.profile = profile
   },
 
-  inputSkill(state, skillIndex, skill) {
-    state.skillSheet.skills[skillIndex] = skill
+  changeSkill(state, { index, skill }) {
+    state.skillSheet.skills.splice(index, 1, skill)
   },
 
   addSkill(state) {
@@ -42,7 +42,7 @@ export const actions = {
     commit('load', skillSheet)
   },
 
-  async save({ state }, { commit }) {
+  async save({ state, commit }) {
     const skillSheetRepository = new SkillSheetRepository(this.$axios)
 
     await skillSheetRepository.updateSkillSheet(state.skillSheet)
