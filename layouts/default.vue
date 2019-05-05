@@ -1,7 +1,10 @@
 <template>
   <div>
     <header>
-      <the-navbar />
+      <the-navbar
+        :user="$auth.user"
+        @logout="$auth.logout()"
+      />
     </header>
     <main>
       <nuxt />

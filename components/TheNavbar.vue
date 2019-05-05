@@ -29,7 +29,7 @@
       class="navbar-menu"
     >
       <div
-        v-if="$route.params.userId"
+        v-if="user"
         class="navbar-end"
       >
         <b-dropdown
@@ -43,13 +43,13 @@
             role="button"
           >
             <b-icon icon="account" />
-            {{ $route.params.userId }}
+            {{ user.name }}
             <b-icon icon="menu-down" />
           </a>
           <b-dropdown-item
             value="logout"
             aria-role="menuitem"
-            @click="$auth.logout()"
+            @click="$emit('logout')"
           >
             <b-icon
               icon="logout"
@@ -62,3 +62,14 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  props: {
+    user: {
+      type: Object,
+      default: null
+    }
+  }
+}
+</script>
