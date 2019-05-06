@@ -37,17 +37,28 @@
         <div class="column">
           <div class="box">
             <template v-if="active === 'profile'">
-              <form-fields-profile
-                :initial-values="profile"
-                @change="handleProfileChange"
-              />
+              <div class="content">
+                <form-fields-profile
+                  :initial-values="profile"
+                  @change="handleProfileChange"
+                />
+              </div>
             </template>
             <template v-if="activeSkillIndex !== -1">
-              <form-fields-skill
-                :key="activeSkillIndex"
-                :initial-values="skills[activeSkillIndex]"
-                @change="handleSkillChange"
-              />
+              <div class="content">
+                <form-fields-skill
+                  :key="activeSkillIndex"
+                  :initial-values="skills[activeSkillIndex]"
+                  @change="handleSkillChange"
+                />
+              </div>
+              <b-button
+                type="is-danger"
+                icon-left="delete"
+                @click="handleSkillRemove"
+              >
+                削除
+              </b-button>
             </template>
           </div>
         </div>
@@ -104,7 +115,8 @@ export default {
     ...mapMutations('skillSheetEdit', [
       'changeProfile',
       'changeSkill',
-      'addSkill'
+      'addSkill',
+      'removeSkill'
     ]),
     ...mapActions('skillSheetEdit', ['save']),
 
@@ -122,6 +134,16 @@ export default {
     handleSkillAdd() {
       this.addSkill()
       this.active = `skill:${this.skills.length - 1}`
+    },
+
+    handleSkillRemove() {
+      this.removeSkill(this.activeSkillIndex)
+      const prevIndex = this.activeSkillIndex - 1
+      if (prevIndex < 0) {
+        this.active = 'profile'
+      } else {
+        this.active = `skill:${prevIndex}`
+      }
     },
 
     handleSave() {
