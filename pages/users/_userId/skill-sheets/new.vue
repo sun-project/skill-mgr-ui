@@ -2,11 +2,8 @@
   <section class="section">
     <div class="container">
       <h1 class="title has-text-centered">
-        スキルシートの編集
+        スキルシートの作成
       </h1>
-      <h2 class="subtitle has-text-centered">
-        最新
-      </h2>
       <div class="columns">
         <div class="column is-one-quarter">
           <form-fields-panel
@@ -87,7 +84,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('skillSheetEdit', ['skillSheet']),
+    ...mapGetters('skillSheetNew', ['skillSheet']),
 
     profile() {
       return this.skillSheet && this.skillSheet.profile
@@ -108,17 +105,17 @@ export default {
   },
 
   async fetch({ store, params }) {
-    await store.dispatch('skillSheetEdit/load', params)
+    await store.dispatch('skillSheetNew/load', params)
   },
 
   methods: {
-    ...mapMutations('skillSheetEdit', [
+    ...mapMutations('skillSheetNew', [
       'changeProfile',
       'changeSkill',
       'addSkill',
       'removeSkill'
     ]),
-    ...mapActions('skillSheetEdit', ['save']),
+    ...mapActions('skillSheetNew', ['save']),
 
     handleProfileChange(newProfile) {
       this.changeProfile(newProfile)

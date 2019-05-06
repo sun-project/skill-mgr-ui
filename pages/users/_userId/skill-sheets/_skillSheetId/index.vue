@@ -7,72 +7,72 @@
       <h2 class="subtitle has-text-centered">
         最新
       </h2>
-      <div class="box">
-        <div style="margin-bottom: 1.5rem;">
-          <div class="field is-grouped is-grouped-centered">
-            <div class="field has-addons">
-              <div class="control">
-                <nuxt-link
-                  :to="editLink"
+      <div style="margin-bottom: 1.5rem;">
+        <div class="field is-grouped is-grouped-centered">
+          <div class="field has-addons">
+            <div class="control">
+              <nuxt-link
+                :to="editLink"
+                class="button is-primary is-outlined"
+              >
+                <b-icon
+                  icon="pencil"
+                  size="is-small"
+                />
+                <span>編集</span>
+              </nuxt-link>
+            </div>
+            <div class="control">
+              <button class="button is-primary is-outlined">
+                <b-icon
+                  icon="eye"
+                  size="is-small"
+                />
+                <span>プレビュー</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <b-dropdown>
+                <button
+                  slot="trigger"
                   class="button is-primary is-outlined"
                 >
                   <b-icon
-                    icon="pencil"
+                    icon="clock-outline"
                     size="is-small"
                   />
-                  <span>編集</span>
-                </nuxt-link>
-              </div>
-              <div class="control">
-                <button class="button is-primary is-outlined">
-                  <b-icon
-                    icon="eye"
-                    size="is-small"
-                  />
-                  <span>プレビュー</span>
+                  <span>版の管理</span>
+                  <b-icon icon="menu-down" />
                 </button>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <b-dropdown>
-                  <button
-                    slot="trigger"
-                    class="button is-primary is-outlined"
-                  >
-                    <b-icon
-                      icon="clock-outline"
-                      size="is-small"
-                    />
-                    <span>版の管理</span>
-                    <b-icon icon="menu-down" />
-                  </button>
-                  <b-dropdown-item>
+                <b-dropdown-item has-link>
+                  <nuxt-link to="new">
                     <b-icon
                       icon="plus"
                       size="is-small"
                     />
                     <span>新板を作成</span>
-                  </b-dropdown-item>
-                  <b-dropdown-item>
-                    <b-icon
-                      icon="history"
-                      size="is-small"
-                    />
-                    <span>履歴を表示</span>
-                  </b-dropdown-item>
-                </b-dropdown>
-              </div>
+                  </nuxt-link>
+                </b-dropdown-item>
+                <b-dropdown-item>
+                  <b-icon
+                    icon="history"
+                    size="is-small"
+                  />
+                  <span>履歴を表示</span>
+                </b-dropdown-item>
+              </b-dropdown>
             </div>
           </div>
         </div>
-        <table-profile
-          class="profile"
-          v-bind="profile"
-        />
-        <table-skills :skills="skills" />
       </div>
+      <table-profile
+        class="profile"
+        v-bind="profile"
+      />
+      <table-skills :skills="skills" />
     </div>
   </section>
 </template>
