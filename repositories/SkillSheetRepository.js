@@ -23,7 +23,7 @@ export class SkillSheetRepository {
       return null
     }
 
-    return response.skill_sheet_list[0].id
+    return response.skill_sheet_list[response.skill_sheet_list.length - 1].id
   }
 
   async fetchSkillSheet(skillSheetId) {
