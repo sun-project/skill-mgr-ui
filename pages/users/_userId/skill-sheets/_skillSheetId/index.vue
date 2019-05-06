@@ -48,12 +48,14 @@
                     <span>版の管理</span>
                     <b-icon icon="menu-down" />
                   </button>
-                  <b-dropdown-item>
-                    <b-icon
-                      icon="plus"
-                      size="is-small"
-                    />
-                    <span>新板を作成</span>
+                  <b-dropdown-item has-link>
+                    <nuxt-link to="new">
+                      <b-icon
+                        icon="plus"
+                        size="is-small"
+                      />
+                      <span>新板を作成</span>
+                    </nuxt-link>
                   </b-dropdown-item>
                   <b-dropdown-item>
                     <b-icon

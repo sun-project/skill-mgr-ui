@@ -51,6 +51,20 @@ export class SkillSheetRepository {
 
     await console.debug(`SkillSheetRepository#updateSkillSheet(${JSON.stringify(skillSheet)})`, response) // eslint-disable-line
   }
+
+  async createSkillSheet(skillSheet) {
+    const { response } = await this.$axios.$post(
+      '/skillmgr/api/v1/skillsheets/create',
+      {
+        skill_sheet: {
+          profile: mapProfileFieldsBack(skillSheet.profile),
+          skill_list: skillSheet.skills.map(mapSkillFieldsBack)
+        }
+      }
+    )
+
+    await console.debug(`SkillSheetRepository#createSkillSheet(${JSON.stringify(skillSheet)})`, response) // eslint-disable-line
+  }
 }
 
 const mapSkillSheet = skillSheet => ({
@@ -132,4 +146,10 @@ export const createNewSkill = () => ({
   middlewares: [],
   languages: [],
   others: []
+})
+
+export const createNewSkillSheet = copyOf => ({
+  ...copyOf,
+  id: '',
+  meta: null
 })
