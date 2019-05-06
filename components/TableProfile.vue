@@ -1,76 +1,87 @@
 <template>
-  <table class="table is-bordered is-fullwidth">
-    <tbody>
-      <tr>
-        <th>
-          氏名
-        </th>
-        <td>
-          {{ fullName }}
-        </td>
-        <th>
-          性別
-        </th>
-        <td>
-          {{ sex }}
-        </td>
-        <th>
-          生年月
-        </th>
-        <td>
-          {{ birthday | formatYearMonth }}
-        </td>
-        <td>
-          {{ age | formatAge }}
-        </td>
-      </tr>
-      <tr>
-        <th>
-          住所
-        </th>
-        <td>
-          {{ address }}
-        </td>
-        <th>
-          最寄り駅
-        </th>
-        <td colspan="4">
-          {{ nearestStation }}
-        </td>
-      </tr>
-      <tr>
-        <th>
-          最終学歴
-        </th>
-        <td>
-          {{ finalEducation }}
-        </td>
-        <th>
-          学部・学科
-        </th>
-        <td colspan="4">
-          {{ department }}
-        </td>
-      </tr>
-      <tr>
-        <th>
-          卒業年月
-        </th>
-        <td>
-          {{ graduation | formatYearMonth }}
-          <template v-if="graduationType">
-            ({{ graduationType }})
-          </template>
-        </td>
-        <th>
-          免許・資格
-        </th>
-        <td colspan="4">
-          <list-inline :items="licenses" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-profile">
+    <table class="table is-bordered is-fullwidth">
+      <tbody>
+        <tr>
+          <th>
+            氏名
+          </th>
+          <td data-label="氏名">
+            {{ fullName }}
+          </td>
+          <th>
+            性別
+          </th>
+          <td data-label="性別">
+            {{ sex }}
+          </td>
+          <th data-label="生年月">
+            生年月
+          </th>
+          <td data-label="生年月">
+            {{ birthday | formatYearMonth }}
+          </td>
+          <td data-label="年齢">
+            {{ age | formatAge }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            住所
+          </th>
+          <td data-label="住所">
+            {{ address }}
+          </td>
+          <th>
+            最寄り駅
+          </th>
+          <td
+            data-label="最寄駅"
+            colspan="4"
+          >
+            {{ nearestStation }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            最終学歴
+          </th>
+          <td data-label="最終学歴">
+            {{ finalEducation }}
+          </td>
+          <th>
+            学部・学科
+          </th>
+          <td
+            data-label="学部・学科"
+            colspan="4"
+          >
+            {{ department }}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            卒業年月
+          </th>
+          <td data-label="卒業年月">
+            {{ graduation | formatYearMonth }}
+            <template v-if="graduationType">
+              ({{ graduationType }})
+            </template>
+          </td>
+          <th>
+            免許・資格
+          </th>
+          <td
+            data-label="免許・資格"
+            colspan="4"
+          >
+            <list-inline :items="licenses" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -151,8 +162,29 @@ export default {
 </script>
 
 <style scoped>
-.table-cell {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
+@media screen and (max-width: 768px) {
+  .table-profile {
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    max-width: 100%;
+    position: relative;
+    display: block;
+  }
+  .table-profile th {
+    display: none;
+  }
+  .table-profile td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    padding-right: 0.5em;
+    text-align: left;
+  }
+  .table-profile td {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    text-align: right;
+    border: 0;
+    border-bottom: 1px solid whitesmoke;
+  }
 }
 </style>
