@@ -65,7 +65,7 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    proxy: process.env.NODE_ENV === 'development'
+    proxy: true
   },
 
   /*
@@ -73,9 +73,11 @@ module.exports = {
    */
   proxy: {
     '/skillmgr/api/': {
-      target: 'http://localhost:8081',
+      target: process.env.PROXY_URL || 'http://localhost:8081',
       onProxyReq(proxyReq, req, res) {
-        proxyReq.setHeader('X_GATEWAY_USER_ID', 'tmiyajima')
+        if (process.env.NODE_ENV === 'development') {
+          proxyReq.setHeader('X_GATEWAY_USER_ID', 'tmiyajima')
+        }
       }
     }
   },
