@@ -1,6 +1,6 @@
 const pkg = require('./package')
-const config = require('./config')
-const { contextPath } = require('./config/env')
+
+const contextPath = process.env.CONTEXT_PATH || ''
 
 module.exports = {
   mode: 'universal',
@@ -65,7 +65,21 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: process.env.NODE_ENV === 'development'
   },
+
+  /*
+   ** Proxy module configuration
+   */
+  proxy: {
+    '/skillmgr/api/': {
+      target: 'http://localhost:8081',
+      onProxyReq(proxyReq, req, res) {
+        proxyReq.setHeader('X_GATEWAY_USER_ID', 'tmiyajima')
+      }
+    }
+  },
+
   /*
    ** Auth module configuration
    */
@@ -102,22 +116,6 @@ module.exports = {
   },
 
   /*
-   ** Info response
-   */
-  info: {
-    path: `${contextPath}/api/info`,
-    data: {
-      app: 'skillMgrUi'
-    }
-  },
-  /*
-   ** Health response
-   */
-  health: {
-    path: `${contextPath}/api/health`
-  },
-
-  /*
    ** Router configuration
    */
   router: {
@@ -143,10 +141,5 @@ module.exports = {
         })
       }
     }
-  },
-
-  /*
-   * Override config
-   */
-  ...config
+  }
 }
