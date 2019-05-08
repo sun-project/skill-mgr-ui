@@ -23,6 +23,10 @@ export const actions = {
         ? await skillSheetRepository.fetchLatestSkillSheetId(userId)
         : skillSheetId
 
+    if (!loadingSkillSheetId) {
+      return
+    }
+
     const skillSheet = await skillSheetRepository.fetchSkillSheet(
       loadingSkillSheetId
     )

@@ -4,75 +4,103 @@
       <h1 class="title has-text-centered">
         スキルシート
       </h1>
-      <h2 class="subtitle has-text-centered">
-        最新
-      </h2>
-      <div style="margin-bottom: 1.5rem;">
-        <div class="field is-grouped is-grouped-centered">
-          <div class="field has-addons">
-            <div class="control">
+      <template v-if="!skillSheet">
+        <template v-if="skillSheetId === 'latest'">
+          <b-notification :closable="false">
+            <section class="section has-text-centered">
+              まだスキルシートがありません
+            </section>
+            <section class="section has-text-centered">
               <nuxt-link
-                :to="editLink"
-                class="button is-primary is-outlined"
+                to="new"
+                class="button"
               >
-                <b-icon
-                  icon="pencil"
-                  size="is-small"
-                />
-                <span>編集</span>
+                スキルシートを作成する
               </nuxt-link>
-            </div>
-            <div class="control">
-              <button class="button is-primary is-outlined">
-                <b-icon
-                  icon="eye"
-                  size="is-small"
-                />
-                <span>プレビュー</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <b-dropdown>
-                <button
-                  slot="trigger"
+            </section>
+          </b-notification>
+        </template>
+      </template>
+      <template v-else>
+        <h2 class="subtitle has-text-centered">
+          最新
+        </h2>
+        <div style="margin-bottom: 1.5rem;">
+          <div class="field is-grouped is-grouped-centered">
+            <div class="field has-addons">
+              <div class="control">
+                <nuxt-link
+                  :to="editLink"
                   class="button is-primary is-outlined"
                 >
                   <b-icon
-                    icon="clock-outline"
+                    icon="pencil"
                     size="is-small"
                   />
-                  <span>版の管理</span>
-                  <b-icon icon="menu-down" />
+                  <span>編集</span>
+                </nuxt-link>
+              </div>
+              <div class="control">
+                <button class="button is-primary is-outlined">
+                  <b-icon
+                    icon="eye"
+                    size="is-small"
+                  />
+                  <span>プレビュー</span>
                 </button>
-                <b-dropdown-item has-link>
-                  <nuxt-link to="new">
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <b-dropdown>
+                  <button
+                    slot="trigger"
+                    class="button is-primary is-outlined"
+                  >
                     <b-icon
-                      icon="plus"
+                      icon="clock-outline"
                       size="is-small"
                     />
-                    <span>新板を作成</span>
-                  </nuxt-link>
-                </b-dropdown-item>
-                <b-dropdown-item>
-                  <b-icon
-                    icon="history"
-                    size="is-small"
-                  />
-                  <span>履歴を表示</span>
-                </b-dropdown-item>
-              </b-dropdown>
+                    <span>版の管理</span>
+                    <b-icon icon="menu-down" />
+                  </button>
+                  <b-dropdown-item has-link>
+                    <nuxt-link to="new">
+                      <b-icon
+                        icon="plus"
+                        size="is-small"
+                      />
+                      <span>新板を作成</span>
+                    </nuxt-link>
+                  </b-dropdown-item>
+                  <b-dropdown-item>
+                    <b-icon
+                      icon="history"
+                      size="is-small"
+                    />
+                    <span>履歴を表示</span>
+                  </b-dropdown-item>
+                </b-dropdown>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <table-profile
-        class="profile"
-        v-bind="profile"
-      />
-      <table-skills :skills="skills" />
+        <table-profile
+          class="profile"
+          v-bind="profile"
+        />
+        <template v-if="skills.length === 0">
+          <b-notification :closable="false">
+            <section class="section has-text-centered">
+              まだ経歴がありません
+            </section>
+          </b-notification>
+        </template>
+        <template v-else>
+          <table-skills :skills="skills" />
+        </template>
+      </template>
     </div>
   </section>
 </template>
@@ -92,6 +120,10 @@ export default {
   computed: {
     ...mapGetters('skillSheetDetail', ['skillSheet']),
 
+    skillSheetId() {
+      return this.$route.params.skillSheetId
+    },
+
     profile() {
       return this.skillSheet && this.skillSheet.profile
     },
@@ -110,7 +142,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .page-title {

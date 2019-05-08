@@ -148,7 +148,24 @@ export const createNewSkill = () => ({
   others: []
 })
 
-export const createNewSkillSheet = copyOf => ({
+export const createNewSkillSheet = (
+  copyOf = {
+    profile: {
+      fullName: '',
+      sex: '',
+      birthday: '',
+      age: '',
+      address: '',
+      nearestStation: '',
+      finalEducation: '',
+      department: '',
+      graduation: '',
+      graduationType: '',
+      licenses: ''
+    },
+    skills: []
+  }
+) => ({
   ...copyOf,
   id: '',
   meta: null

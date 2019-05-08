@@ -42,6 +42,11 @@ export const actions = {
       userId
     )
 
+    if (!latestSkillSheetId) {
+      commit('load', createNewSkillSheet())
+      return
+    }
+
     const latestSkillSheet = await skillSheetRepository.fetchSkillSheet(
       latestSkillSheetId
     )
