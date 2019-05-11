@@ -35,10 +35,7 @@
           <th>
             最寄り駅
           </th>
-          <td
-            data-label="最寄駅"
-            colspan="4"
-          >
+          <td data-label="最寄駅" colspan="4">
             {{ nearestStation }}
           </td>
         </tr>
@@ -52,10 +49,7 @@
           <th>
             学部・学科
           </th>
-          <td
-            data-label="学部・学科"
-            colspan="4"
-          >
+          <td data-label="学部・学科" colspan="4">
             {{ department }}
           </td>
         </tr>
@@ -72,10 +66,7 @@
           <th>
             免許・資格
           </th>
-          <td
-            data-label="免許・資格"
-            colspan="4"
-          >
+          <td data-label="免許・資格" colspan="4">
             <list-inline :items="licenses" />
           </td>
         </tr>

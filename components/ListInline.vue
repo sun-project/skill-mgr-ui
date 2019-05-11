@@ -1,14 +1,7 @@
 <template>
   <ul class="list-inline">
-    <li
-      v-for="(item, i) in items"
-      :key="keyOf(item, i)"
-    >
-      <slot
-        name="item"
-        :item="item"
-        :index="i"
-      >
+    <li v-for="(item, i) in items" :key="keyOf(item, i)">
+      <slot name="item" :item="item" :index="i">
         {{ item }}
       </slot>
     </li>

@@ -54,7 +54,7 @@ export const actions = {
     commit('load', createNewSkillSheet(latestSkillSheet))
   },
 
-  async save({ state, commit }) {
+  async save({ state }) {
     const skillSheetRepository = new SkillSheetRepository(this.$axios)
 
     await skillSheetRepository.createSkillSheet(state.skillSheet)

@@ -25,10 +25,7 @@
               </b-button>
             </div>
             <div class="column">
-              <nuxt-link
-                to="."
-                class="button is-text is-fullwidth"
-              >
+              <nuxt-link to="." class="button is-text is-fullwidth">
                 キャンセル
               </nuxt-link>
             </div>

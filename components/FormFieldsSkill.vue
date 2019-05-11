@@ -1,66 +1,33 @@
 <template>
   <div>
-    <b-field
-      label="作業期間"
-      :horizontal="horizontal"
-    >
+    <b-field label="作業期間" :horizontal="horizontal">
       <b-field>
-        <b-input
-          v-model="values.workRange.from"
-          type="text"
-        />
+        <b-input v-model="values.workRange.from" type="text" />
         <p class="control">
           <span class="button is-static">〜</span>
         </p>
-        <b-input
-          v-model="values.workRange.to"
-          type="text"
-        />
+        <b-input v-model="values.workRange.to" type="text" />
       </b-field>
     </b-field>
-    <b-field
-      label="システム概要"
-      :horizontal="horizontal"
-    >
-      <b-input
-        v-model="values.systemName"
-        type="text"
-      />
+    <b-field label="システム概要" :horizontal="horizontal">
+      <b-input v-model="values.systemName" type="text" />
     </b-field>
-    <b-field
-      label="工程"
-      :horizontal="horizontal"
-    >
+    <b-field label="工程" :horizontal="horizontal">
       <b-taginput v-model="values.steps" />
     </b-field>
-    <b-field
-      label="作業形態"
-      :horizontal="horizontal"
-    >
+    <b-field label="作業形態" :horizontal="horizontal">
       <b-taginput v-model="values.positions" />
     </b-field>
-    <b-field
-      label="動作環境"
-      :horizontal="horizontal"
-    >
+    <b-field label="動作環境" :horizontal="horizontal">
       <b-taginput v-model="values.environments" />
     </b-field>
-    <b-field
-      label="DB/MW"
-      :horizontal="horizontal"
-    >
+    <b-field label="DB/MW" :horizontal="horizontal">
       <b-taginput v-model="values.middlewares" />
     </b-field>
-    <b-field
-      label="言語"
-      :horizontal="horizontal"
-    >
+    <b-field label="言語" :horizontal="horizontal">
       <b-taginput v-model="values.languages" />
     </b-field>
-    <b-field
-      label="ツール/FW"
-      :horizontal="horizontal"
-    >
+    <b-field label="ツール/FW" :horizontal="horizontal">
       <b-taginput v-model="values.others" />
     </b-field>
   </div>
