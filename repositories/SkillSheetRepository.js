@@ -161,7 +161,7 @@ export const createNewSkillSheet = (
       department: '',
       graduation: '',
       graduationType: '',
-      licenses: ''
+      licenses: []
     },
     skills: []
   }
