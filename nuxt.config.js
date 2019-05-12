@@ -74,8 +74,8 @@ module.exports = {
   proxy: {
     '/skillmgr/api/': {
       target: process.env.PROXY_URL || 'http://localhost:8081',
-      onProxyReq(proxyReq, req, res) {
-        if (process.env.NODE_ENV === 'development') {
+      onProxyReq(proxyReq) {
+        if (!process.env.PROXY_URL) {
           proxyReq.setHeader('X_GATEWAY_USER_ID', 'tmiyajima')
         }
       }
