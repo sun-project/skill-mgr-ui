@@ -19,8 +19,10 @@ pipeline {
       steps {
         script {
           docker.withRegistry(registry, registryCredential) {
-            dockerImage.push(env.BUILD_NUMBER)
-            dockerImage.push("latest")
+            dockerImage.push(env.BRANCH_NAME)
+            if (env.BRANCH_NAME == 'master') {
+              dockerImage.push('latest')
+            }
           }
         }
       }
