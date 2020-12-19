@@ -3,8 +3,6 @@ const pkg = require('./package')
 const contextPath = process.env.CONTEXT_PATH || ''
 
 module.exports = {
-  mode: 'universal',
-
   /*
    ** Headers of the page
    */
