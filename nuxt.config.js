@@ -3,8 +3,6 @@ const pkg = require('./package')
 const contextPath = process.env.CONTEXT_PATH || ''
 
 module.exports = {
-  mode: 'universal',
-
   /*
    ** Headers of the page
    */
@@ -12,32 +10,32 @@ module.exports = {
     title: pkg.name,
     meta: [
       {
-        charset: 'utf-8'
+        charset: 'utf-8',
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, initial-scale=1',
       },
       {
         hid: 'description',
         name: 'description',
-        content: pkg.description
-      }
+        content: pkg.description,
+      },
     ],
     link: [
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
-    ]
+        href: '/favicon.ico',
+      },
+    ],
   },
 
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#fff'
+    color: '#fff',
   },
 
   /*
@@ -58,14 +56,14 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/pwa',
-    'nuxt-buefy'
+    'nuxt-buefy',
   ],
   /*
    ** Axios module configuration
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    proxy: true
+    proxy: true,
   },
 
   /*
@@ -78,8 +76,8 @@ module.exports = {
         if (!process.env.PROXY_URL) {
           proxyReq.setHeader('X_GATEWAY_USER_ID', 'tmiyajima')
         }
-      }
-    }
+      },
+    },
   },
 
   /*
@@ -90,7 +88,7 @@ module.exports = {
       login: `/login`,
       logout: `/`,
       callback: `${contextPath}/login-callback`,
-      home: `${contextPath}/`
+      home: `${contextPath}/`,
     },
     strategies: {
       local: false,
@@ -106,15 +104,15 @@ module.exports = {
         grant_type: 'authorization_code',
         scope: ['openid', 'profile', 'email'],
         client_id: 'skill-mgr-ui',
-        token_key: 'access_token'
-      }
-    }
+        token_key: 'access_token',
+      },
+    },
   },
   /*
    ** Buefy module configuration
    */
   buefy: {
-    css: false
+    css: false,
   },
 
   /*
@@ -122,7 +120,7 @@ module.exports = {
    */
   router: {
     base: `${contextPath}/`,
-    middleware: ['auth']
+    middleware: ['auth'],
   },
 
   /*
@@ -139,9 +137,9 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
-    }
-  }
+    },
+  },
 }

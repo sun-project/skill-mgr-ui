@@ -5,12 +5,8 @@
     </b-field>
     <b-field label="性別" :horizontal="horizontal">
       <div>
-        <b-radio v-model="values.sex" native-value="男">
-          男
-        </b-radio>
-        <b-radio v-model="values.sex" native-value="女">
-          女
-        </b-radio>
+        <b-radio v-model="values.sex" native-value="男"> 男 </b-radio>
+        <b-radio v-model="values.sex" native-value="女"> 女 </b-radio>
       </div>
     </b-field>
     <b-field label="生年月" :horizontal="horizontal">
@@ -55,7 +51,7 @@ export default {
   props: {
     horizontal: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     initialValues: {
@@ -72,18 +68,18 @@ export default {
           department: '',
           graduation: '',
           graduationType: '',
-          licenses: []
+          licenses: [],
         }
-      }
-    }
+      },
+    },
   },
 
   data() {
     return {
       values: {
         ...this.initialValues,
-        licenses: [...this.initialValues.licenses]
-      }
+        licenses: [...this.initialValues.licenses],
+      },
     }
   },
 
@@ -93,10 +89,10 @@ export default {
       handler(newValues) {
         this.$emit('change', {
           ...newValues,
-          licenses: [...newValues.licenses]
+          licenses: [...newValues.licenses],
         })
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>

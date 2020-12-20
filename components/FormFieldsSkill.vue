@@ -38,7 +38,7 @@ export default {
   props: {
     horizontal: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     initialValues: {
@@ -47,7 +47,7 @@ export default {
         return {
           workRange: {
             from: '',
-            to: ''
+            to: '',
           },
           systemName: '',
           steps: [],
@@ -56,10 +56,10 @@ export default {
           environments: [],
           middlewares: [],
           languages: [],
-          others: []
+          others: [],
         }
-      }
-    }
+      },
+    },
   },
 
   data() {
@@ -72,8 +72,8 @@ export default {
         environments: [...this.initialValues.environments],
         middlewares: [...this.initialValues.middlewares],
         languages: [...this.initialValues.languages],
-        others: [...this.initialValues.others]
-      }
+        others: [...this.initialValues.others],
+      },
     }
   },
 
@@ -89,10 +89,10 @@ export default {
           environments: [...newValues.environments],
           middlewares: [...newValues.middlewares],
           languages: [...newValues.languages],
-          others: [...newValues.others]
+          others: [...newValues.others],
         })
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>

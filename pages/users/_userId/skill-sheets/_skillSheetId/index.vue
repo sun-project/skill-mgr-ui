@@ -1,9 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title has-text-centered">
-        スキルシート
-      </h1>
+      <h1 class="title has-text-centered">スキルシート</h1>
       <template v-if="!skillSheet">
         <template v-if="skillSheetId === 'latest'">
           <b-notification :closable="false">
@@ -19,10 +17,8 @@
         </template>
       </template>
       <template v-else>
-        <h2 class="subtitle has-text-centered">
-          最新
-        </h2>
-        <div style="margin-bottom: 1.5rem;">
+        <h2 class="subtitle has-text-centered">最新</h2>
+        <div style="margin-bottom: 1.5rem">
           <div class="field is-grouped is-grouped-centered">
             <div class="field has-addons">
               <div class="control">
@@ -87,7 +83,11 @@ import TableSkills from '@/components/TableSkills.vue'
 export default {
   components: {
     TableProfile,
-    TableSkills
+    TableSkills,
+  },
+
+  async fetch({ store, params }) {
+    await store.dispatch('skillSheetDetail/load', params)
   },
 
   computed: {
@@ -107,12 +107,8 @@ export default {
 
     editLink() {
       return this.skillSheet && `${this.skillSheet.id}/edit`
-    }
+    },
   },
-
-  async fetch({ store, params }) {
-    await store.dispatch('skillSheetDetail/load', params)
-  }
 }
 </script>
 

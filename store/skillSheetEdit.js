@@ -1,14 +1,14 @@
 import {
   SkillSheetRepository,
-  createNewSkill
+  createNewSkill,
 } from '@/repositories/SkillSheetRepository'
 
 export const state = () => ({
-  skillSheet: null
+  skillSheet: null,
 })
 
 export const getters = {
-  skillSheet: state => state.skillSheet
+  skillSheet: (state) => state.skillSheet,
 }
 
 export const mutations = {
@@ -30,7 +30,7 @@ export const mutations = {
 
   removeSkill(state, skillIndex) {
     state.skillSheet.skills.splice(skillIndex, 1)
-  }
+  },
 }
 
 export const actions = {
@@ -46,5 +46,5 @@ export const actions = {
     const skillSheetRepository = new SkillSheetRepository(this.$axios)
 
     await skillSheetRepository.updateSkillSheet(state.skillSheet)
-  }
+  },
 }

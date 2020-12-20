@@ -1,12 +1,8 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title has-text-centered">
-        スキルシートの編集
-      </h1>
-      <h2 class="subtitle has-text-centered">
-        最新
-      </h2>
+      <h1 class="title has-text-centered">スキルシートの編集</h1>
+      <h2 class="subtitle has-text-centered">最新</h2>
       <div class="columns">
         <div class="column is-one-quarter">
           <form-fields-panel
@@ -74,13 +70,17 @@ export default {
   components: {
     FormFieldsPanel,
     FormFieldsProfile,
-    FormFieldsSkill
+    FormFieldsSkill,
   },
 
   data() {
     return {
-      active: 'profile'
+      active: 'profile',
     }
+  },
+
+  async fetch({ store, params }) {
+    await store.dispatch('skillSheetEdit/load', params)
   },
 
   computed: {
@@ -101,11 +101,7 @@ export default {
 
       const index = this.active.substr('skill:'.length)
       return Number(index)
-    }
-  },
-
-  async fetch({ store, params }) {
-    await store.dispatch('skillSheetEdit/load', params)
+    },
   },
 
   methods: {
@@ -113,7 +109,7 @@ export default {
       'changeProfile',
       'changeSkill',
       'addSkill',
-      'removeSkill'
+      'removeSkill',
     ]),
     ...mapActions('skillSheetEdit', ['save']),
 
@@ -124,7 +120,7 @@ export default {
     handleSkillChange(newSkill) {
       this.changeSkill({
         index: this.activeSkillIndex,
-        skill: newSkill
+        skill: newSkill,
       })
     },
 
@@ -144,16 +140,16 @@ export default {
     },
 
     handleSave() {
-      this.$dialog.confirm({
+      this.$buefy.dialog.confirm({
         message: '修正内容を保存しますか？',
         confirmText: '保存',
         cancelText: 'キャンセル',
         onConfirm: async () => {
           await this.save()
           this.$router.push('.')
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>

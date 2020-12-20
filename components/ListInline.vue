@@ -15,12 +15,12 @@ export default {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     itemKey: {
       type: [String, Function],
-      default: ''
-    }
+      default: '',
+    },
   },
 
   methods: {
@@ -32,8 +32,8 @@ export default {
         return String(this.itemKey(item))
       }
       return item[this.itemKey]
-    }
-  }
+    },
+  },
 }
 </script>
 
