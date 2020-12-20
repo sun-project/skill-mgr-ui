@@ -1,9 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title has-text-centered">
-        ログイン
-      </h1>
+      <h1 class="title has-text-centered">ログイン</h1>
       <div class="box">
         <b-button
           type="is-primary"
@@ -24,8 +22,8 @@ export default {
   methods: {
     loginWithKeycloak() {
       this.$auth.loginWith('keycloak')
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -33,21 +33,21 @@ import { formatYearMonth } from '@/filters'
 
 export default {
   filters: {
-    formatYearMonth
+    formatYearMonth,
   },
 
   props: {
     value: {
       type: String,
-      default: 'profile'
+      default: 'profile',
     },
 
     skills: {
       type: Array,
       default() {
         return []
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -61,7 +61,7 @@ export default {
 
     handleAddClick() {
       this.$emit('add')
-    }
-  }
+    },
+  },
 }
 </script>

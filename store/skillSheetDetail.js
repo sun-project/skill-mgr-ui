@@ -1,17 +1,17 @@
 import { SkillSheetRepository } from '@/repositories/SkillSheetRepository'
 
 export const state = () => ({
-  skillSheet: null
+  skillSheet: null,
 })
 
 export const getters = {
-  skillSheet: state => state.skillSheet
+  skillSheet: (state) => state.skillSheet,
 }
 
 export const mutations = {
   load(state, skillSheet) {
     state.skillSheet = skillSheet
-  }
+  },
 }
 
 export const actions = {
@@ -32,5 +32,5 @@ export const actions = {
     )
 
     commit('load', skillSheet)
-  }
+  },
 }

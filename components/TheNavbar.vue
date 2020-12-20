@@ -5,9 +5,7 @@
     aria-label="main navigation"
   >
     <div class="navbar-brand">
-      <nuxt-link class="navbar-item" to="/">
-        SkillMgr - 経歴管理
-      </nuxt-link>
+      <nuxt-link class="navbar-item" to="/"> SkillMgr - 経歴管理 </nuxt-link>
       <a
         role="button"
         class="navbar-burger burger"
@@ -48,8 +46,8 @@ export default {
   props: {
     user: {
       type: Object,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

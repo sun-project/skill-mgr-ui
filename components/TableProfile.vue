@@ -3,21 +3,15 @@
     <table class="table is-bordered is-fullwidth">
       <tbody>
         <tr>
-          <th>
-            氏名
-          </th>
+          <th>氏名</th>
           <td data-label="氏名">
             {{ fullName }}
           </td>
-          <th>
-            性別
-          </th>
+          <th>性別</th>
           <td data-label="性別">
             {{ sex }}
           </td>
-          <th data-label="生年月">
-            生年月
-          </th>
+          <th data-label="生年月">生年月</th>
           <td data-label="生年月">
             {{ birthday | formatYearMonth }}
           </td>
@@ -26,46 +20,32 @@
           </td>
         </tr>
         <tr>
-          <th>
-            住所
-          </th>
+          <th>住所</th>
           <td data-label="住所">
             {{ address }}
           </td>
-          <th>
-            最寄り駅
-          </th>
+          <th>最寄り駅</th>
           <td data-label="最寄駅" colspan="4">
             {{ nearestStation }}
           </td>
         </tr>
         <tr>
-          <th>
-            最終学歴
-          </th>
+          <th>最終学歴</th>
           <td data-label="最終学歴">
             {{ finalEducation }}
           </td>
-          <th>
-            学部・学科
-          </th>
+          <th>学部・学科</th>
           <td data-label="学部・学科" colspan="4">
             {{ department }}
           </td>
         </tr>
         <tr>
-          <th>
-            卒業年月
-          </th>
+          <th>卒業年月</th>
           <td data-label="卒業年月">
             {{ graduation | formatYearMonth }}
-            <template v-if="graduationType">
-              ({{ graduationType }})
-            </template>
+            <template v-if="graduationType"> ({{ graduationType }}) </template>
           </td>
-          <th>
-            免許・資格
-          </th>
+          <th>免許・資格</th>
           <td data-label="免許・資格" colspan="4">
             <list-inline :items="licenses" />
           </td>
@@ -81,63 +61,63 @@ import { formatAge, formatYearMonth } from '@/filters'
 
 export default {
   components: {
-    ListInline
+    ListInline,
   },
 
   filters: {
     formatAge,
-    formatYearMonth
+    formatYearMonth,
   },
 
   props: {
     fullName: {
       type: String,
-      default: ''
+      default: '',
     },
     sex: {
       type: String,
-      default: ''
+      default: '',
     },
     birthday: {
       type: String,
       default: '',
       validator(value) {
         return !value || value.match(/^\d{4}-\d{2}$/)
-      }
+      },
     },
     age: {
       type: Number,
       default: null,
       validator(value) {
         return !value || value >= 0
-      }
+      },
     },
     address: {
       type: String,
-      default: ''
+      default: '',
     },
     nearestStation: {
       type: String,
-      default: ''
+      default: '',
     },
     finalEducation: {
       type: String,
-      default: ''
+      default: '',
     },
     department: {
       type: String,
-      default: ''
+      default: '',
     },
     graduation: {
       type: String,
       default: '',
       validator(value) {
         return !value || value.match(/^\d{4}-\d{2}$/)
-      }
+      },
     },
     graduationType: {
       type: String,
-      default: ''
+      default: '',
     },
     licenses: {
       type: Array,
@@ -145,10 +125,10 @@ export default {
         return []
       },
       validator(value) {
-        return value.every(v => typeof v === 'string')
-      }
-    }
-  }
+        return value.every((v) => typeof v === 'string')
+      },
+    },
+  },
 }
 </script>
 

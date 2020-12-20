@@ -44,11 +44,11 @@ import { formatYearMonth } from '@/filters'
 
 export default {
   components: {
-    ListInline
+    ListInline,
   },
 
   filters: {
-    formatYearMonth
+    formatYearMonth,
   },
 
   props: {
@@ -56,9 +56,9 @@ export default {
       type: Array,
       default() {
         return []
-      }
-    }
-  }
+      },
+    },
+  },
 }
 </script>
 

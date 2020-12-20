@@ -1,9 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title has-text-centered">
-        スキルシートの作成
-      </h1>
+      <h1 class="title has-text-centered">スキルシートの作成</h1>
       <div class="columns">
         <div class="column is-one-quarter">
           <form-fields-panel
@@ -71,13 +69,17 @@ export default {
   components: {
     FormFieldsPanel,
     FormFieldsProfile,
-    FormFieldsSkill
+    FormFieldsSkill,
   },
 
   data() {
     return {
-      active: 'profile'
+      active: 'profile',
     }
+  },
+
+  async fetch({ store, params }) {
+    await store.dispatch('skillSheetNew/load', params)
   },
 
   computed: {
@@ -98,11 +100,7 @@ export default {
 
       const index = this.active.substr('skill:'.length)
       return Number(index)
-    }
-  },
-
-  async fetch({ store, params }) {
-    await store.dispatch('skillSheetNew/load', params)
+    },
   },
 
   methods: {
@@ -110,7 +108,7 @@ export default {
       'changeProfile',
       'changeSkill',
       'addSkill',
-      'removeSkill'
+      'removeSkill',
     ]),
     ...mapActions('skillSheetNew', ['save']),
 
@@ -121,7 +119,7 @@ export default {
     handleSkillChange(newSkill) {
       this.changeSkill({
         index: this.activeSkillIndex,
-        skill: newSkill
+        skill: newSkill,
       })
     },
 
@@ -148,9 +146,9 @@ export default {
         onConfirm: async () => {
           await this.save()
           this.$router.push('.')
-        }
+        },
       })
-    }
-  }
+    },
+  },
 }
 </script>

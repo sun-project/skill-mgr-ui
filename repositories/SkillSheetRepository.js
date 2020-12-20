@@ -6,14 +6,14 @@ export class SkillSheetRepository {
   async fetchLatestSkillSheetId(userId) {
     const params = userId
       ? {
-          user_id: userId
+          user_id: userId,
         }
       : undefined
 
     const { response } = await this.$axios.$get(
       `/skillmgr/api/v1/skillsheets/list`,
       {
-        params
+        params,
       }
     )
 
@@ -44,8 +44,8 @@ export class SkillSheetRepository {
       {
         skill_sheet: {
           profile: mapProfileFieldsBack(skillSheet.profile),
-          skill_list: skillSheet.skills.map(mapSkillFieldsBack)
-        }
+          skill_list: skillSheet.skills.map(mapSkillFieldsBack),
+        },
       }
     )
 
@@ -58,8 +58,8 @@ export class SkillSheetRepository {
       {
         skill_sheet: {
           profile: mapProfileFieldsBack(skillSheet.profile),
-          skill_list: skillSheet.skills.map(mapSkillFieldsBack)
-        }
+          skill_list: skillSheet.skills.map(mapSkillFieldsBack),
+        },
       }
     )
 
@@ -67,17 +67,17 @@ export class SkillSheetRepository {
   }
 }
 
-const mapSkillSheet = skillSheet => ({
+const mapSkillSheet = (skillSheet) => ({
   id: skillSheet.id,
   meta: {
     createdAt: skillSheet.create_timestamp,
-    updatedAt: skillSheet.last_update_timestamp
+    updatedAt: skillSheet.last_update_timestamp,
   },
   profile: mapProfileFields(skillSheet.profile),
-  skills: skillSheet.skill_list.map(mapSkillFields)
+  skills: skillSheet.skill_list.map(mapSkillFields),
 })
 
-const mapProfileFields = profile => ({
+const mapProfileFields = (profile) => ({
   fullName: profile.full_name,
   sex: profile.sex_name,
   birthday: profile.birthday,
@@ -88,10 +88,10 @@ const mapProfileFields = profile => ({
   department: profile.department,
   graduation: profile.graduation,
   graduationType: profile.graduation_type,
-  licenses: profile.license_list
+  licenses: profile.license_list,
 })
 
-const mapProfileFieldsBack = profile => ({
+const mapProfileFieldsBack = (profile) => ({
   full_name: profile.fullName,
   sex_name: profile.sex,
   birthday: profile.birthday,
@@ -102,13 +102,13 @@ const mapProfileFieldsBack = profile => ({
   department: profile.department,
   graduation: profile.graduation,
   graduation_type: profile.graduationType,
-  license_list: profile.licenses
+  license_list: profile.licenses,
 })
 
-const mapSkillFields = skill => ({
+const mapSkillFields = (skill) => ({
   workRange: {
     from: skill.work_from,
-    to: skill.work_to
+    to: skill.work_to,
   },
   systemName: skill.system_name,
   steps: skill.step_list,
@@ -117,10 +117,10 @@ const mapSkillFields = skill => ({
   environments: skill.environment_list,
   middlewares: skill.middleware_list,
   languages: skill.language_list,
-  others: skill.other_list
+  others: skill.other_list,
 })
 
-const mapSkillFieldsBack = skill => ({
+const mapSkillFieldsBack = (skill) => ({
   work_from: skill.workRange.from,
   work_to: skill.workRange.to,
   system_name: skill.systemName,
@@ -130,13 +130,13 @@ const mapSkillFieldsBack = skill => ({
   environment_list: skill.environments,
   middleware_list: skill.middlewares,
   language_list: skill.languages,
-  other_list: skill.others
+  other_list: skill.others,
 })
 
 export const createNewSkill = () => ({
   workRange: {
     from: '',
-    to: ''
+    to: '',
   },
   systemName: '',
   steps: [],
@@ -145,7 +145,7 @@ export const createNewSkill = () => ({
   environments: [],
   middlewares: [],
   languages: [],
-  others: []
+  others: [],
 })
 
 export const createNewSkillSheet = (
@@ -161,12 +161,12 @@ export const createNewSkillSheet = (
       department: '',
       graduation: '',
       graduationType: '',
-      licenses: []
+      licenses: [],
     },
-    skills: []
+    skills: [],
   }
 ) => ({
   ...copyOf,
   id: '',
-  meta: null
+  meta: null,
 })
