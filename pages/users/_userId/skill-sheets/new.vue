@@ -141,7 +141,7 @@ export default {
     },
 
     handleSave() {
-      this.$dialog.confirm({
+      this.$buefy.dialog.confirm({
         message: '修正内容を保存しますか？',
         confirmText: '保存',
         cancelText: 'キャンセル',
